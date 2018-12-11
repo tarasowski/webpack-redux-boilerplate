@@ -1,6 +1,6 @@
 # Redux Boilerplate
 
-* [See the full example here](https://redux.js.org/introduction/examples)
+* [Here is the list of all examples](https://redux.js.org/introduction/examples)
 
 ## Some rules
 
