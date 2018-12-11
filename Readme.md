@@ -1,6 +1,6 @@
 # Redux Boilerplate
 
-* [See the full example here](https://codesandbox.io/s/github/reduxjs/redux/tree/master/examples/async)
+* [See the full example here](https://redux.js.org/introduction/examples)
 
 ## Some rules
 
