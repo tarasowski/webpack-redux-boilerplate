@@ -1,17 +1,18 @@
 import createElement from 'virtual-dom/create-element';
 import { diff, patch } from 'virtual-dom';
-import app from './screens/App'
-import update from './reducers/index'
+import app from './container/App'
+import todoApp from './reducers/index'
 
 
-function render(update, app, node) {
-  let state = update({}, 'INIT')
-  let currentView = app(dispatch, state)
+function render(update, view, node) {
+  let state = update({})('INIT')
+  let currentView = view(dispatch)(state)
   let rootNode = createElement(currentView)
   node.appendChild(rootNode)
   function dispatch(action) {
-    state = update(state, action)
-    const updatedView = app(dispatch, state)
+    console.log(state)
+    state = update(state)(action)
+    const updatedView = view(dispatch)(state)
     const patches = diff(currentView, updatedView)
     rootNode = patch(rootNode, patches)
     currentView = updatedView
@@ -20,4 +21,4 @@ function render(update, app, node) {
 
 const rootNode = document.getElementById('app');
 
-render(update, app, rootNode)
+render(todoApp, app, rootNode)
