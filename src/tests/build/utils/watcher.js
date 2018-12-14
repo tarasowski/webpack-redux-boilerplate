@@ -5,20 +5,12 @@
 var exec = require('child_process').exec;
 
 var _require = require('ramda-x'),
-    Task = _require.Task,
-    compose = _require.compose;
+    Task = _require.Task;
 
 var path = require('path');
 var fs = require('fs');
-console.log(path.resolve(__dirname, '../', 'reducers', 'index.js'));
 
 var reducers = path.resolve(__dirname, '../', 'reducers', 'index.js');
-
-// const watchFile = filepath => command =>
-//     Task((_, resolve) =>
-//         fs.watch(filepath, () =>
-//             resolve(exec(command).stderr.pipe(process.stderr))))
-
 
 var watchFile = function watchFile(filepath) {
     return function (command) {

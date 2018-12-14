@@ -3,6 +3,8 @@ import { h } from 'virtual-dom';
 import footer from '../components/Filter'
 import todoList from '../components/TodoList'
 import { submit, inputField } from '../components/AddTodo'
+import { addTodoText, addTodo, toggleTodo, setVisiblityFilter } from '../actions/'
+
 
 const { div, pre, input, button } = hh(h);
 
@@ -19,26 +21,13 @@ const getVisibleTodos = ({ todos, visibilityFilter: filter }) =>
 const app = dispatch => state =>
     div([
         inputField(e =>
-            dispatch({
-                type: 'ADD_TODO_TEXT',
-                text: e.target.value,
-            })),
+            dispatch(addTodoText(e.target.value))),
         submit(() =>
-            dispatch({
-                type: 'ADD_TODO',
-                id: state.todos.length,
-                text: state.temp.todoText,
-            })),
+            dispatch(addTodo(state))),
         todoList(id =>
-            dispatch({
-                type: 'TOGGLE_TODO',
-                id
-            }))(getVisibleTodos(state)),
+            dispatch(toggleTodo(id)))(getVisibleTodos(state)),
         footer(filter =>
-            dispatch({
-                type: 'SET_VISIBILITY_FILTER',
-                filter
-            }))(state),
+            dispatch(setVisiblityFilter(filter)))(state),
         pre({}, JSON.stringify(state, null, 4))
     ]);
 

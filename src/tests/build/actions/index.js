@@ -3,31 +3,36 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var ADD = exports.ADD = 'ADD';
-var SUBTRACT = exports.SUBTRACT = 'SUBTRACT';
-var ADD_PLAYER = exports.ADD_PLAYER = 'ADD_PLAYER';
-var REMOVE_PLAYER = exports.REMOVE_PLAYER = 'REMOVE_PLAYER';
+var ADD_TODO = exports.ADD_TODO = 'ADD_TODO';
+var TOGGLE_TODO = exports.TOGGLE_TODO = 'TOGGLE_TODO';
+var ADD_TODO_TEXT = exports.ADD_TODO_TEXT = 'ADD_TODO_TEXT';
+var SET_VISIBILITY_FILTER = exports.SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
-var increment = exports.increment = function increment() {
+var addTodoText = exports.addTodoText = function addTodoText(value) {
     return {
-        type: 'ADD'
+        type: ADD_TODO_TEXT,
+        text: value
     };
 };
 
-var decrement = exports.decrement = function decrement() {
+var addTodo = exports.addTodo = function addTodo(state) {
     return {
-        type: 'SUBTRACT'
+        type: ADD_TODO,
+        id: state.todos.length,
+        text: state.temp.todoText
     };
 };
 
-var addPlayer = exports.addPlayer = function addPlayer() {
+var toggleTodo = exports.toggleTodo = function toggleTodo(id) {
     return {
-        type: 'ADD_PLAYER'
+        type: TOGGLE_TODO,
+        id: id
     };
 };
 
-var removePlayer = exports.removePlayer = function removePlayer() {
+var setVisiblityFilter = exports.setVisiblityFilter = function setVisiblityFilter(filter) {
     return {
-        type: 'REMOVE_PLAYER'
+        type: SET_VISIBILITY_FILTER,
+        filter: filter
     };
 };

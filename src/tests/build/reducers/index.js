@@ -16,13 +16,13 @@ var todo = function todo() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     return function (action) {
         switch (action.type) {
-            case 'ADD_TODO':
+            case _index.ADD_TODO:
                 return {
                     id: action.id,
                     text: action.text,
                     completed: false
                 };
-            case 'TOGGLE_TODO':
+            case _index.TOGGLE_TODO:
                 return state.id === action.id ? _extends({}, state, { completed: !state.completed }) : state;
             default:
                 return state;
@@ -34,7 +34,7 @@ var temp = function temp() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     return function (action) {
         switch (action.type) {
-            case 'ADD_TODO_TEXT':
+            case _index.ADD_TODO_TEXT:
                 return _extends({}, state, { todoText: action.text });
             default:
                 return state;
@@ -46,9 +46,9 @@ var todos = function todos() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     return function (action) {
         switch (action.type) {
-            case 'ADD_TODO':
+            case _index.ADD_TODO:
                 return [].concat(_toConsumableArray(state), [todo(state)(action)]);
-            case 'TOGGLE_TODO':
+            case _index.TOGGLE_TODO:
                 return state.map(function (td) {
                     return todo(td)(action);
                 });
@@ -62,7 +62,7 @@ var visibilityFilter = function visibilityFilter() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'SHOW_ALL';
     return function (action) {
         switch (action.type) {
-            case 'SET_VISIBILITY_FILTER':
+            case _index.SET_VISIBILITY_FILTER:
                 return action.filter;
             default:
                 return state;
