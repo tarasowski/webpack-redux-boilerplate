@@ -1,7 +1,5 @@
 'use strict'
 import { ADD, SUBTRACT, ADD_PLAYER, REMOVE_PLAYER } from '../actions/index'
-import expect from 'expect'
-import deepFreeze from '../../node_modules/deep-freeze'
 import { combineReducers } from '../utils/combine-reducers'
 
 const todo = (state = {}) => action => {
@@ -58,3 +56,4 @@ const todoApp = combineReducers({
 })
 
 export default todoApp
+

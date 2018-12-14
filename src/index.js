@@ -10,7 +10,6 @@ function render(update, view, node) {
   let rootNode = createElement(currentView)
   node.appendChild(rootNode)
   function dispatch(action) {
-    console.log(state)
     state = update(state)(action)
     const updatedView = view(dispatch)(state)
     const patches = diff(currentView, updatedView)
