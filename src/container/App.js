@@ -20,7 +20,7 @@ const getVisibleTodos = ({ todos, visibilityFilter: filter }) =>
                 : todos
 
 const mapStateToProps = state => ({
-    todos: (getVisibleTodos(state))
+    todos: getVisibleTodos(state)
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -34,53 +34,27 @@ const mapDispatchToProps = dispatch => ({
 
 
 const app = dispatch => state => connect =>
-    connect === null
-        ? div([
-            inputField(e =>
-                dispatch(
-                    addTodoText(e.target.value))),
-            submit(() =>
-                dispatch(
-                    addTodo(state))),
-            todoList(id =>
-                dispatch(
-                    toggleTodo(id))
-            )(getVisibleTodos(state)),
-            footer(filter =>
-                dispatch(
-                    setVisiblityFilter(filter)
-                ))(state),
-            pre({}, JSON.stringify(state, null, 4)),
-        ])
-        : div([
-            inputField(e =>
-                dispatch(
-                    addTodoText(e.target.value))),
-            submit(() =>
-                dispatch(
-                    addTodo(state))),
-            todoList(id =>
-                dispatch(
-                    toggleTodo(id))
-            )(getVisibleTodos(state)),
-            footer(filter =>
-                dispatch(
-                    setVisiblityFilter(filter)
-                ))(state),
-            pre({}, JSON.stringify(state, null, 4)),
-            connect(
-                mapStateToProps,
-                mapDispatchToProps
-            )(todoListNew)
-        ])
-
-
-
-// const todoList2 = connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(todoListNew)
-
+    div([
+        inputField(e =>
+            dispatch(
+                addTodoText(e.target.value))),
+        submit(() =>
+            dispatch(
+                addTodo(state))),
+        todoList(id =>
+            dispatch(
+                toggleTodo(id))
+        )(getVisibleTodos(state)),
+        footer(filter =>
+            dispatch(
+                setVisiblityFilter(filter)
+            ))(state),
+        pre({}, JSON.stringify(state, null, 4)),
+        connect(
+            mapStateToProps,
+            mapDispatchToProps
+        )(todoListNew)
+    ])
 
 
 export default app

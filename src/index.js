@@ -10,13 +10,14 @@ const connect = state => dispatch => (...fns) => component =>
 
 function render(update, view, node) {
   let state = update({})('INIT')
-  let currentView = view(dispatch)(state)(null)
+  const initconnect = connect(state)(dispatch)
+  let currentView = view(dispatch)(state)(initconnect)
   let rootNode = createElement(currentView)
   node.appendChild(rootNode)
   function dispatch(action) {
     state = update(state)(action)
-    const initconnect = connect(state)(dispatch)
-    const updatedView = view(dispatch)(state)(initconnect)
+    const updateconnect = connect(state)(dispatch)
+    const updatedView = view(dispatch)(state)(updateconnect)
     const patches = diff(currentView, updatedView)
     rootNode = patch(rootNode, patches)
     currentView = updatedView
