@@ -1,10 +1,7 @@
-const rewire = require('rewire')
 const expect = require('expect')
 const deepFreeze = require('../../../node_modules/deep-freeze')
-const reducers = rewire('../build/reducers/index')
-const todos = reducers.__get__('todos')
-const store = rewire('../build/store/configureStore')
-const app = store.__get__('store')
+const { todos } = require('../build/reducers')
+const { store } = require('../build/store/configureStore')
 
 
 const testAddTodo = before => action => after =>
@@ -27,7 +24,7 @@ testAddTodo([])({
 
 const testSetVisitiblityFilter = before => action => after =>
     expect(
-        app(deepFreeze(before))(deepFreeze(action))
+        store(deepFreeze(before))(deepFreeze(action))
     ).toEqual(after)
 
 testSetVisitiblityFilter('')(

@@ -1,7 +1,7 @@
 import createElement from 'virtual-dom/create-element';
 import { diff, patch } from 'virtual-dom';
 import view from './containers/App'
-import update from './store/configureStore'
+import { store } from './store/configureStore'
 
 
 
@@ -22,5 +22,5 @@ function render(update, view, node) {
 const rootNode = document.getElementById('app')
 
 
-render(update, view, rootNode)
+render(store, view, rootNode)
 
