@@ -9,11 +9,11 @@ export const addTodoText = value => ({
     text: value,
 })
 
-export const addTodo = state => ({
+export const addTodo = (counter => value => ({
     type: ADD_TODO,
-    id: state.todos.length,
-    text: state.temp.todoText,
-})
+    id: counter++,
+    text: value
+}))(1)
 
 export const toggleTodo = id => ({
     type: TOGGLE_TODO,

@@ -32,7 +32,7 @@ const app = dispatch => state =>
                 setVisiblityFilter(filter)
             ))(state),
         pre({}, JSON.stringify(state, null, 4)),
-        //Container(state)(dispatch)
+        Container(state)(dispatch)
     ])
 
 
