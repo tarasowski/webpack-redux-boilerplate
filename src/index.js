@@ -1,29 +1,29 @@
 import createElement from 'virtual-dom/create-element';
 import { diff, patch } from 'virtual-dom';
-import app from './container/App'
-import todoApp from './reducers/index'
+import view from './container/App'
+import update from './reducers/index'
+import testconnect from './utils/testconnect'
+import { connect } from './utils/connect'
 
 
-const connect = state => dispatch => (...fns) => component =>
-  component(fns.reduce((a, c) => ({ ...{ state: a(state) }, ...{ dispatch: c(dispatch) } })))
 
-
-function render(update, view, node) {
+function render(update, view, connect, testconnect, node) {
   let state = update({})('INIT')
-  const initconnect = connect(state)(dispatch)
-  let currentView = view(dispatch)(state)(initconnect)
+  let currentView = view(dispatch)(state)
   let rootNode = createElement(currentView)
   node.appendChild(rootNode)
+
   function dispatch(action) {
     state = update(state)(action)
-    const updateconnect = connect(state)(dispatch)
-    const updatedView = view(dispatch)(state)(updateconnect)
+    const updatedView = view(dispatch)(state)
     const patches = diff(currentView, updatedView)
     rootNode = patch(rootNode, patches)
     currentView = updatedView
   }
 }
 
-const rootNode = document.getElementById('app');
+const rootNode = document.getElementById('app')
 
-render(todoApp, app, rootNode)
+
+render(update, view, connect, testconnect, rootNode)
+

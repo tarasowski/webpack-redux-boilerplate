@@ -3,18 +3,18 @@ import { h } from 'virtual-dom';
 
 const { div, pre, input, button } = hh(h);
 
+export const AddTodo = ({ state, oninput, onclick }) => {
+    return div({}, [
+        input({
+            type: 'text',
+            name: 'todo',
+            oninput
+        }),
+        button({
+            type: 'submit',
+            onclick: () => onclick(state)
+        }, 'Add Todo')
+    ])
+}
 
-export const inputField = oninput =>
-    input({
-        type: 'text',
-        name: 'todo',
-        oninput
-    })
-
-
-export const submit = onclick =>
-    button({
-        type: 'submit',
-        onclick,
-    }, 'Add todo')
 

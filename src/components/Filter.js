@@ -12,15 +12,14 @@ const filterLink = onFilterClick => filter => ({ value, visibilityFilter }) =>
         }, value)
 
 
-const footer = onFilterClick => ({ visibilityFilter }) => {
-    console.log(visibilityFilter)
-    return div({}, [
+const footer = onFilterClick => ({ visibilityFilter }) =>
+    div({}, [
         span({}, 'Show: '),
         filterLink(onFilterClick)('SHOW_ALL')({ value: 'Show all', visibilityFilter }),
         filterLink(onFilterClick)('SHOW_ACTIVE')({ value: 'Show Active', visibilityFilter }),
         filterLink(onFilterClick)('SHOW_COMPLETED')({ value: 'Show Completed', visibilityFilter })
 
     ])
-}
+
 
 export default footer

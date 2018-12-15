@@ -3,12 +3,8 @@ import { h } from 'virtual-dom';
 
 const { div, button, pre, input, ul, li } = hh(h);
 
-const todoListNew = ({ state, onTodoClick }) => {
-
-    return div({}, [
+export const Component = ({ state, onTodoClick }) =>
+    div({}, [
         pre({}, JSON.stringify(state))
     ])
 
-}
-
-export default todoListNew
