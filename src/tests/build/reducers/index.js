@@ -3,12 +3,11 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.visibilityFilter = exports.todos = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _index = require('../actions/index');
-
-var _combineReducers = require('../utils/combine-reducers');
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -30,19 +29,7 @@ var todo = function todo() {
     };
 };
 
-var temp = function temp() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return function (action) {
-        switch (action.type) {
-            case _index.ADD_TODO_TEXT:
-                return _extends({}, state, { todoText: action.text });
-            default:
-                return state;
-        }
-    };
-};
-
-var todos = function todos() {
+var todos = exports.todos = function todos() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     return function (action) {
         switch (action.type) {
@@ -58,7 +45,7 @@ var todos = function todos() {
     };
 };
 
-var visibilityFilter = function visibilityFilter() {
+var visibilityFilter = exports.visibilityFilter = function visibilityFilter() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'SHOW_ALL';
     return function (action) {
         switch (action.type) {
@@ -69,11 +56,3 @@ var visibilityFilter = function visibilityFilter() {
         }
     };
 };
-
-var todoApp = (0, _combineReducers.combineReducers)({
-    todos: todos, // key = state field, value = reducer function
-    visibilityFilter: visibilityFilter, // key = state field, value = reducer function
-    temp: temp
-});
-
-exports.default = todoApp;

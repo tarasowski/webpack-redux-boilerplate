@@ -1,20 +1,20 @@
 import hh from 'hyperscript-helpers';
 import { h } from 'virtual-dom';
 
-const { div, pre, input, button } = hh(h);
+const { div, input, button } = hh(h);
 
+export const AddTodo = ({ dispatch: { onclick } }) => {
+    return div({}, [
+        input({
+            type: 'text',
+            name: 'todo',
+            id: 'todo',
+        }),
+        button({
+            type: 'submit',
+            onclick
+        }, 'Add Todo')
+    ])
+}
 
-export const inputField = oninput =>
-    input({
-        type: 'text',
-        name: 'todo',
-        oninput
-    })
-
-
-export const submit = onclick =>
-    button({
-        type: 'submit',
-        onclick,
-    }, 'Add todo')
 

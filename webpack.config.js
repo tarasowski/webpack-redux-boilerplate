@@ -1,8 +1,12 @@
 module.exports = {
   entry: ['./src/index.js'],
   devtool: 'inline-source-map',
+  mode: 'none',
   output: {
     filename: 'bundle.js',
+  },
+  performance: {
+    hints: false
   },
   watch: true,
   devServer: {

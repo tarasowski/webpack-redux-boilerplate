@@ -3,7 +3,8 @@ const expect = require('expect')
 const deepFreeze = require('../../../node_modules/deep-freeze')
 const reducers = rewire('../build/reducers/index')
 const todos = reducers.__get__('todos')
-const todoApp = reducers.__get__('todoApp')
+const store = rewire('../build/store/configureStore')
+const app = store.__get__('store')
 
 
 const testAddTodo = before => action => after =>
@@ -26,7 +27,7 @@ testAddTodo([])({
 
 const testSetVisitiblityFilter = before => action => after =>
     expect(
-        todoApp(deepFreeze(before))(deepFreeze(action))
+        app(deepFreeze(before))(deepFreeze(action))
     ).toEqual(after)
 
 testSetVisitiblityFilter('')(
@@ -36,7 +37,6 @@ testSetVisitiblityFilter('')(
     })
     ({
         todos: [],
-        temp: {},
         visibilityFilter: 'SHOW_COMPLETED'
     })
 

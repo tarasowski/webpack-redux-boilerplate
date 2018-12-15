@@ -1,7 +1,8 @@
 import createElement from 'virtual-dom/create-element';
 import { diff, patch } from 'virtual-dom';
-import app from './container/App'
-import todoApp from './reducers/index'
+import view from './containers/App'
+import update from './store/configureStore'
+
 
 
 function render(update, view, node) {
@@ -18,6 +19,8 @@ function render(update, view, node) {
   }
 }
 
-const rootNode = document.getElementById('app');
+const rootNode = document.getElementById('app')
 
-render(todoApp, app, rootNode)
+
+render(update, view, rootNode)
+
