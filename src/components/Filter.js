@@ -12,7 +12,7 @@ const filterLink = onFilterClick => filter => ({ value, visibilityFilter }) =>
         }, value)
 
 
-const footer = onFilterClick => ({ visibilityFilter }) =>
+const footer = ({ state: { visibilityFilter }, dispatch: { onFilterClick } }) =>
     div({}, [
         span({}, 'Show: '),
         filterLink(onFilterClick)('SHOW_ALL')({ value: 'Show all', visibilityFilter }),

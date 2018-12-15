@@ -15,7 +15,7 @@ var connect = exports.connect = function connect() {
         return function (state) {
             return function (dispatch) {
                 return component(fns.reduce(function (a, c) {
-                    return _extends({ state: a(state) }, c(dispatch));
+                    return _extends({ state: a(state) }, { dispatch: c(dispatch) });
                 }));
             };
         };

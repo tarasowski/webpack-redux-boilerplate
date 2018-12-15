@@ -11,10 +11,12 @@ const todo = onclick => ({ text, completed }) =>
     }, text)
 
 
-const todoList = onTodoClick => todos =>
-    div({}, [
+const todoList = ({ state: { todos }, dispatch: { onTodoClick } }) => {
+    return div({}, [
         ul({}, todos.map(td =>
             todo(() => onTodoClick(td.id))(td)))
     ])
+}
+
 
 export default todoList

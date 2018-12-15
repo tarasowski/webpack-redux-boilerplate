@@ -1,10 +1,10 @@
 'use strict'
 import {
     ADD_TODO,
-    TOGGLE_TODO, ADD_TODO_TEXT,
+    TOGGLE_TODO,
     SET_VISIBILITY_FILTER
 } from '../actions/index'
-import { combineReducers } from '../utils/combine-reducers'
+
 
 const todo = (state = {}) => action => {
     switch (action.type) {
@@ -23,16 +23,7 @@ const todo = (state = {}) => action => {
     }
 }
 
-const temp = (state = {}) => action => {
-    switch (action.type) {
-        case ADD_TODO_TEXT:
-            return { ...state, todoText: action.text }
-        default:
-            return state
-    }
-}
-
-const todos = (state = []) => action => {
+export const todos = (state = []) => action => {
     switch (action.type) {
         case ADD_TODO:
             return [...state, todo(state)(action)]
@@ -43,7 +34,7 @@ const todos = (state = []) => action => {
     }
 }
 
-const visibilityFilter = (state = 'SHOW_ALL') => action => {
+export const visibilityFilter = (state = 'SHOW_ALL') => action => {
     switch (action.type) {
         case SET_VISIBILITY_FILTER:
             return action.filter
@@ -51,13 +42,4 @@ const visibilityFilter = (state = 'SHOW_ALL') => action => {
             return state
     }
 }
-
-
-const todoApp = combineReducers({
-    todos: todos, // key = state field, value = reducer function
-    visibilityFilter: visibilityFilter, // key = state field, value = reducer function
-    temp: temp
-})
-
-export default todoApp
 
